@@ -1,0 +1,1 @@
+A game of tic tac toe created in JavaScript and played in the browser.
