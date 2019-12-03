@@ -9,6 +9,7 @@ let turn = "X";
 
 /*-----cached element references-----*/
 const squares = Array.from(document.querySelectorAll("#board div"));
+const messages = document.querySelector("h2");
 
 
 /*-----event listeners-----*/
@@ -33,6 +34,7 @@ function render() {
   board.forEach((mark, index) => {
     squares[index].textContent = mark;
   });
+  messages.textContent = `It's ${turn}'s turn!`;
 }
 
 function handleTurn(event) {
