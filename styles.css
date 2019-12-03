@@ -2,3 +2,53 @@
   box-sizing: border-box;
 }
 
+body {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 2em;
+}
+
+h2 {
+  margin: 10px auto;
+  font-size: 1.5em;
+}
+
+.flex-container {
+  display: flex;
+  border: 2px solid black;
+  justify-content: center;
+}
+
+.flex-column{
+  height: 100%;
+  width: 100%;
+  flex-direction:  column;
+}
+
+.flex-wrap {
+  border: 1px solid red;
+  flex-wrap: wrap;
+  height: 432 px;
+  width: 432px;
+}
+
+.square {
+  flex-wrap: wrap;
+  border: 1px solid green;
+  height: 140px;
+  width: 140px;
+}
+
+#reset-button {
+  text-align: center;
+  font-size: 0.8em;
+  border: 1px solid black;
+  height: 55px;
+  width: 100px;
+  margin: 10px;
+}
+
