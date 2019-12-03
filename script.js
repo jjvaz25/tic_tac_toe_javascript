@@ -39,8 +39,9 @@ function handleTurn(event) {
   let idx = squares.findIndex((square) => {
     return square === event.target; /*finds the index of the square in our squares array that matches the square the user clicked!*/
   });
-  board[idx] = turn;
-  console.log(board);
+  board[idx] = turn; /*populates the square at the clicked index with the value in the turn variable*/
+  turn = turn === "X"? "O" : "X";
+  render();
 };
 
 
