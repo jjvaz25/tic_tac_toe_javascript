@@ -4,6 +4,7 @@
 
 /*-----app's state (variables-----*/
 let board;
+let turn = "X";
 
 
 /*-----cached element references-----*/
@@ -11,7 +12,7 @@ const squares = Array.from(document.querySelectorAll("#board div"));
 
 
 /*-----event listeners-----*/
-
+document.getElementById("board").addEventListener("click", handleTurn);
 
 
 /*-----functions-----*/
@@ -19,11 +20,10 @@ const squares = Array.from(document.querySelectorAll("#board div"));
 function init() {
   console.log("in the init() function");
   board = [
-    "1", "2", "3",
-    "4", "5", "6",
-    "7", "8", "9"
+    "", "", "",
+    "", "", "",
+    "", "", ""
   ];
-
   render();
 };
 
@@ -32,10 +32,19 @@ function render() {
   console.log("in the render() function")
   board.forEach((mark, index) => {
     squares[index].textContent = mark;
-    console.log(mark);
   });
 }
 
+function handleTurn(event) {
+  let idx = squares.findIndex((square) => {
+    return square === event.target; /*finds the index of the square in our squares array that matches the square the user clicked!*/
+  });
+  board[idx] = turn;
+  console.log(board);
+};
+
+
+/*--------calling functions-----------*/
 init();
 
 
