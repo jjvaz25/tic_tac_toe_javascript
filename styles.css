@@ -19,7 +19,6 @@ h2 {
 
 .flex-container {
   display: flex;
-  border: 2px solid black;
   justify-content: center;
   align-items: center;
 }
@@ -31,7 +30,6 @@ h2 {
 }
 
 .flex-wrap {
-  border: 1px solid red;
   flex-wrap: wrap;
   height: 432 px;
   width: 432px;
@@ -39,7 +37,7 @@ h2 {
 
 .square {
   flex-wrap: wrap;
-  border: 1px solid green;
+  border: 2px solid black;
   height: 140px;
   width: 140px;
 }
