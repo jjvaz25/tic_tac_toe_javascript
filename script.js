@@ -10,11 +10,26 @@ const gameBoard = (() => {
     "", "", ""
   ];
 
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
   const getBoard = () => {
     return board;
   }
 
-  return { getBoard };
+  const getWinningCombos = () => {
+    return winningCombos;
+  }
+
+  return { getBoard, getWinningCombos };
 
 })();
 
@@ -23,19 +38,21 @@ const gameBoard = (() => {
 const displayController = (() => {
   const squares = Array.from(document.querySelectorAll("#board div"));
   let turn = "X";
+  let win;
   const messages = document.querySelector("h2");
 
   const render = () => {
     gameBoard.getBoard().forEach((mark, index) => {
       squares[index].textContent = mark;
     });
-    messages.textContent = `It's ${turn}'s turn!`
+    messages.textContent = win === "Tie" ? `Tie game! Try again!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
   };
 
   const handleTurn = (event) => {
     idx = squares.findIndex((square) => {
       return square === event.target;
     });
+
     if (gameBoard.getBoard()[idx] === ""){
       gameBoard.getBoard()[idx] = turn;
     } else {
@@ -47,13 +64,33 @@ const displayController = (() => {
     } else {
       turn = "X";
     };
-
+    win = getWinner()
     render();
+    
+
   };
 
-  document.getElementById("board").addEventListener("click", handleTurn);
+  const getWinner = () => {
+    let winner = null;
+    gameBoard.getWinningCombos().forEach((combo, index) => {
+      if (gameBoard.getBoard()[combo[0]] && gameBoard.getBoard()[combo[0]] === gameBoard.getBoard()[combo[1]] &&
+          gameBoard.getBoard()[combo[0]]=== gameBoard.getBoard()[combo[2]]) {
+            console.log("we have a winner");
+            winner = gameBoard.getBoard()[combo[0]]
+            messages.textContent = `Game Over! ${winner} wins!`;
+      } 
+      // else if (!gameBoard.getBoard().includes("")) {
+      //   winner = null;
+      //   messages.textContent = `Game Over! Tie!`;
+      //   console.log("gameboard full")
+      // }
+    });
+    return winner ? winner : gameBoard.getBoard().includes("") ? null : "Tie";
+  }
 
+  document.getElementById("board").addEventListener("click", handleTurn);
 })();
+
 
 /*------PLAYER FACTORY FUNCTIONS-----*/
 const playerFactory = (name, marker) => {
