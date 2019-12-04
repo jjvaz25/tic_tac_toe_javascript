@@ -1,6 +1,78 @@
 //IN REFACTOR BRANCH
 
-/*-----constants-----*/
+
+/*------GAMEBOARD MODULE-----*/
+const gameBoard = (() => {
+  console.log("gameboard automatically initialized");
+  const board = [
+    "", "", "",
+    "", "", "",
+    "", "", ""
+  ];
+
+  const getBoard = () => {
+    return board;
+  }
+
+  return { getBoard };
+
+})();
+
+/*------DISPLAY CONTROLLER MODULE-----*/
+
+const displayController = (() => {
+  const squares = Array.from(document.querySelectorAll("#board div"));
+  let turn = "X";
+
+  const render = () => {
+    gameBoard.getBoard().forEach((mark, index) => {
+      squares[index].textContent = mark;
+    });
+  };
+
+  const handleTurn = (event) => {
+    idx = squares.findIndex((square) => {
+      return square === event.target;
+    });
+    gameBoard.getBoard()[idx] = turn;
+    render();
+    if (turn === "X") {
+      turn = "O";
+    } else {
+      turn = "X";
+    };
+  };
+
+  document.getElementById("board").addEventListener("click", handleTurn);
+
+
+
+  // const handleTurn = (event) =>{
+  //   idx = squares.findIndex((square) => {
+  //     return square === event.target;
+  //   });
+  //   gameBoard.getBoard()[idx] = turn;
+  //   console.log(gameBoard.getBoard());
+  // }
+
+
+
+
+  // document.getElementById("board").addEventListener("click", handleTurn);
+
+
+})();
+
+/*------PLAYER FACTORY FUNCTIONS-----*/
+const playerFactory = (name, marker) => {
+  return { name, marker };
+};
+
+
+
+
+/*
+-----------CONSTANTS-----------
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -12,21 +84,19 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-/*-----app's state (variables-----*/
+---------GLOBAL VARS-----------
 let board;
 let turn = "X";
 let win;
 
-/*-----cached element references-----*/
+-----------Element VARS-----------
 const squares = Array.from(document.querySelectorAll("#board div"));
 const messages = document.querySelector("h2");
 
-/*-----event listeners-----*/
 document.getElementById("board").addEventListener("click", handleTurn);
 document.getElementById("reset-button").addEventListener("click", init)
 
-/*-----functions-----*/
-
+-----------FUNCTIONS-----------
 function init() {
   console.log("in the init() function");
   board = [
@@ -65,6 +135,7 @@ function getWinner() {
   });
   return winner ? winner : board.includes("") ? null : "Tie";
 };
+*/
 
 /*--------calling functions-----------*/
-init();
+// init();
