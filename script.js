@@ -23,11 +23,13 @@ const gameBoard = (() => {
 const displayController = (() => {
   const squares = Array.from(document.querySelectorAll("#board div"));
   let turn = "X";
+  const messages = document.querySelector("h2");
 
   const render = () => {
     gameBoard.getBoard().forEach((mark, index) => {
       squares[index].textContent = mark;
     });
+    messages.textContent = `It's ${turn}'s turn!`
   };
 
   const handleTurn = (event) => {
@@ -35,12 +37,14 @@ const displayController = (() => {
       return square === event.target;
     });
     gameBoard.getBoard()[idx] = turn;
-    render();
+
     if (turn === "X") {
       turn = "O";
     } else {
       turn = "X";
     };
+
+    render();
   };
 
   document.getElementById("board").addEventListener("click", handleTurn);
