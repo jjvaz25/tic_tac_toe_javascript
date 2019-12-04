@@ -10,23 +10,18 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-
 /*-----app's state (variables-----*/
 let board;
 let turn = "X";
 let win;
 
-
-
 /*-----cached element references-----*/
 const squares = Array.from(document.querySelectorAll("#board div"));
 const messages = document.querySelector("h2");
 
-
 /*-----event listeners-----*/
 document.getElementById("board").addEventListener("click", handleTurn);
 document.getElementById("reset-button").addEventListener("click", init)
-
 
 /*-----functions-----*/
 
@@ -51,9 +46,9 @@ function render() {
 
 function handleTurn(event) {
   let idx = squares.findIndex((square) => {
-    return square === event.target; /*finds the index of the square in our squares array that matches the square the user clicked!*/
+    return square === event.target; 
   });
-  board[idx] = turn; /*populates the square at the clicked index with the value in the turn variable*/
+  board[idx] = turn; 
   turn = turn === "X"? "O" : "X";
   win = getWinner();
   render();
@@ -69,44 +64,5 @@ function getWinner() {
   return winner ? winner : board.includes("") ? null : "Tie";
 };
 
-
 /*--------calling functions-----------*/
 init();
-
-
-
-/*
-//gameboard model
-let gameBoardModule = (function() {
-  console.log("hey");
-  let gameBoard = [
-    "X", "O", "X",
-    "O", "X", "O",
-    "X", "O", "X"
-  ];
-}());
-
-//controls flow of the game
-let gameFlowModule = (function() {
-  //insert code to control flow of game
-  //turn
-  //gameOver
-})
-
-//players factoryFunction
-const player = (name, marker) =>{
-  const getMarker = () => marker;
-  const getName = () => name;
-  return { getMarker, getName };
-  //name
-  // makeMove
-}
-
-// const submitName = document.getElementById("playerNames")
-// submitName.addEventListener("submit", (event) => {
-//   console.log(event);
-//   event.preventDefault();
-
-// })
-
-*/
