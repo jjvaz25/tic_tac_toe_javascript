@@ -36,8 +36,12 @@ const displayController = (() => {
     idx = squares.findIndex((square) => {
       return square === event.target;
     });
-    gameBoard.getBoard()[idx] = turn;
-
+    if (gameBoard.getBoard()[idx] === ""){
+      gameBoard.getBoard()[idx] = turn;
+    } else {
+      return;
+    }
+    
     if (turn === "X") {
       turn = "O";
     } else {
@@ -48,22 +52,6 @@ const displayController = (() => {
   };
 
   document.getElementById("board").addEventListener("click", handleTurn);
-
-
-
-  // const handleTurn = (event) =>{
-  //   idx = squares.findIndex((square) => {
-  //     return square === event.target;
-  //   });
-  //   gameBoard.getBoard()[idx] = turn;
-  //   console.log(gameBoard.getBoard());
-  // }
-
-
-
-
-  // document.getElementById("board").addEventListener("click", handleTurn);
-
 
 })();
 
