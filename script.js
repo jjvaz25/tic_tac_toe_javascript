@@ -42,6 +42,8 @@ const displayController = (() => {
   let turn = "X";
   let win;
   const messages = document.querySelector("h2");
+  let clickableSquares = document.getElementById("board") /*.addEventListener("click", handleTurn);*/
+  
 
   const render = () => {
     board.forEach((mark, index) => {
@@ -68,9 +70,9 @@ const displayController = (() => {
     };
     win = getWinner()
     render();
-    
-
   };
+  clickableSquares.addEventListener("click", handleTurn);
+
 
   const getWinner = () => {
     let winner = null;
@@ -80,12 +82,13 @@ const displayController = (() => {
             console.log("we have a winner");
             winner = board[combo[0]]
             messages.textContent = `Game Over! ${winner} wins!`;
+            clickableSquares.removeEventListener("click", handleTurn);
       } 
     });
     return winner ? winner : board.includes("") ? null : "Tie";
   }
 
-  document.getElementById("board").addEventListener("click", handleTurn);
+  
 })();
 
 
