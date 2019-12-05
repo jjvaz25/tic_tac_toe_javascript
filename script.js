@@ -36,13 +36,15 @@ const gameBoard = (() => {
 /*------DISPLAY CONTROLLER MODULE-----*/
 
 const displayController = (() => {
+  const board = gameBoard.getBoard();
+  const winningCombos = gameBoard.getWinningCombos();
   const squares = Array.from(document.querySelectorAll("#board div"));
   let turn = "X";
   let win;
   const messages = document.querySelector("h2");
 
   const render = () => {
-    gameBoard.getBoard().forEach((mark, index) => {
+    board.forEach((mark, index) => {
       squares[index].textContent = mark;
     });
     messages.textContent = win === "Tie" ? `Tie game! Try again!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
@@ -53,8 +55,8 @@ const displayController = (() => {
       return square === event.target;
     });
 
-    if (gameBoard.getBoard()[idx] === ""){
-      gameBoard.getBoard()[idx] = turn;
+    if (board[idx] === ""){
+      board[idx] = turn;
     } else {
       return;
     }
@@ -72,11 +74,11 @@ const displayController = (() => {
 
   const getWinner = () => {
     let winner = null;
-    gameBoard.getWinningCombos().forEach((combo, index) => {
-      if (gameBoard.getBoard()[combo[0]] && gameBoard.getBoard()[combo[0]] === gameBoard.getBoard()[combo[1]] &&
-          gameBoard.getBoard()[combo[0]]=== gameBoard.getBoard()[combo[2]]) {
+    winningCombos.forEach((combo, index) => {
+      if (board[combo[0]] && board[combo[0]] === board[combo[1]] &&
+          board[combo[0]]=== board[combo[2]]) {
             console.log("we have a winner");
-            winner = gameBoard.getBoard()[combo[0]]
+            winner = board[combo[0]]
             messages.textContent = `Game Over! ${winner} wins!`;
       } 
       // else if (!gameBoard.getBoard().includes("")) {
@@ -85,7 +87,7 @@ const displayController = (() => {
       //   console.log("gameboard full")
       // }
     });
-    return winner ? winner : gameBoard.getBoard().includes("") ? null : "Tie";
+    return winner ? winner : board.includes("") ? null : "Tie";
   }
 
   document.getElementById("board").addEventListener("click", handleTurn);
