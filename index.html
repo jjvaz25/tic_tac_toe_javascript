@@ -12,8 +12,19 @@
   <h1>Tic Tac Toe</h1>
   <h2>It's X's turn!</h2>
   
+  <div class="formContainer">
+    <form id="submitNames">
+        <h3 class="formH1">Enter Player Names</h3>
+        <label for="playerOneName">Player 1:</label>
+        <input type="text" name="playerOneName" id="playerOneName" placeholder="Player 1 name">
+        <label for="playerTwoName">Player 2:</label>
+        <input type="text" name="playerTwoName" id="playerTwoName" placeholder="Player 2 name">
+        <button class="sendForm">Start Game</button>
+    </form>
+  </div>
+
   <div class= "flex-container flex-column">
-    <div class= "flex-container flex-wrap" id="board">
+    <div class= "flex-container flex-wrap modal hiddenModal" id="board">
       <div class="square"></div>
       <div class="square"></div>
       <div class="square"></div>
@@ -25,7 +36,7 @@
       <div class="square"></div>
     </div>
 
-    <button id="reset-button">reset</button>
+    <button id="reset-button" class= "hiddenModal">reset</button>
   </div>
 
 

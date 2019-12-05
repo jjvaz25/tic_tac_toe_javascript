@@ -1,5 +1,31 @@
 //IN REFACTOR BRANCH
 
+//GLOBAL VARIABLES
+let player1Obj;
+let player2Obj;
+
+//GLOBAL FUNCTIONS
+const submitNames = document.getElementById("submitNames");
+submitNames.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let player1Name = event.target[0].value;
+  let player2Name = event.target[1].value;
+  player1Obj = playerFactory(player1Name, "X");
+  player2Obj = playerFactory(player2Name, "O");
+  document.getElementById("board").classList.toggle("hiddenModal");
+  document.getElementById("reset-button").classList.toggle("hiddenModal")
+  console.log("submitted");
+  submitNames.parentNode.removeChild(submitNames);
+})
+
+/*------PLAYER FACTORY FUNCTIONS-----*/
+const playerFactory = (name, marker) => {
+  return { name, marker };
+};
+
+
+
+
 
 /*------GAMEBOARD MODULE-----*/
 const gameBoard = (() => {
@@ -40,6 +66,7 @@ const displayController = (() => {
   const winningCombos = gameBoard.getWinningCombos();
   const squares = Array.from(document.querySelectorAll("#board div"));
   let turn = "X";
+  // let turn = player1Obj.name;
   let win;
   const messages = document.querySelector("h2");
   let clickableSquares = document.getElementById("board") /*.addEventListener("click", handleTurn);*/
@@ -66,7 +93,7 @@ const displayController = (() => {
     if (turn === "X") {
       turn = "O";
     } else {
-      turn = "X";
+      turn = "X"
     };
     win = getWinner()
     render();
@@ -92,10 +119,7 @@ const displayController = (() => {
 })();
 
 
-/*------PLAYER FACTORY FUNCTIONS-----*/
-const playerFactory = (name, marker) => {
-  return { name, marker };
-};
+
 
 
 
