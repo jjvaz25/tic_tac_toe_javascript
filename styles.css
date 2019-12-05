@@ -41,6 +41,7 @@ h2 {
   border: 2px solid black;
   height: 140px;
   width: 140px;
+  line-height: 140px;
 }
 
 #reset-button {
@@ -52,6 +53,7 @@ h2 {
   margin: 10px;
 }
 
+/* for form display for names/factory functions
 .hiddenModal {
   display: none;
 }
@@ -71,4 +73,4 @@ input[type="text"] {
 h3 {
   margin-bottom: 20px;
 }
-
+*/

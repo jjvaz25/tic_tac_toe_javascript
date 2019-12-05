@@ -1,5 +1,8 @@
 //IN REFACTOR BRANCH
 
+/*
+TRYING TO USE FACTORY FUNCTIONS FOR NAME SUBMISSION
+
 //GLOBAL VARIABLES
 let player1Obj;
 let player2Obj;
@@ -18,13 +21,12 @@ submitNames.addEventListener("submit", (event) => {
   submitNames.parentNode.removeChild(submitNames);
 })
 
+*/
+
 /*------PLAYER FACTORY FUNCTIONS-----*/
 const playerFactory = (name, marker) => {
   return { name, marker };
 };
-
-
-
 
 
 /*------GAMEBOARD MODULE-----*/
