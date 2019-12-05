@@ -81,11 +81,6 @@ const displayController = (() => {
             winner = board[combo[0]]
             messages.textContent = `Game Over! ${winner} wins!`;
       } 
-      // else if (!gameBoard.getBoard().includes("")) {
-      //   winner = null;
-      //   messages.textContent = `Game Over! Tie!`;
-      //   console.log("gameboard full")
-      // }
     });
     return winner ? winner : board.includes("") ? null : "Tie";
   }
